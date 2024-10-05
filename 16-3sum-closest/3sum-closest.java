@@ -1,27 +1,29 @@
 class Solution {
-    public static int threeSumClosest(int[] nums, int target) {
-        Set<Integer> sums = new HashSet<>();
+     public static int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
-        
+        int closestSum = nums[0] + nums[1] + nums[2];  // Initialize with any triplet sum
+
         for (int i = 0; i < nums.length - 2; i++) {
-            int l = i + 1, r = nums.length - 1;
-            while (l < r) {
-                int sum = nums[i] + nums[l] + nums[r];
-                sums.add(sum);
-                if (sum < target) l++;
-                else r--;
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
+                    closestSum = currentSum;
+                }
+
+                if (currentSum < target) {
+                    left++;
+                } else if (currentSum > target) {
+                    right--;
+                } else {
+                    return currentSum;  // Perfect match, return immediately
+                }
             }
         }
-        
-        int minDiff = Integer.MAX_VALUE, result = 0;
-        for (int sum : sums) {
-            int diff = Math.abs(sum - target);
-            if (diff < minDiff) {
-                minDiff = diff;
-                result = sum;
-            }
-        }
-        
-        return result;
+
+        return closestSum;
     }
 }
