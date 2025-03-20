@@ -24,15 +24,8 @@ class Solution {
     return new String (s);
     
     }
-    public boolean isVowel(char a){
-            a=Character.toLowerCase(a);
-            if(a=='a' || a=='e' || a=='i' || a=='o' || a=='u'){
-                return true;
-            }else{
-                return false;
-            }
-
-
-        }
+     public static boolean isVowel(char a) {
+        return "AEIOUaeiou".indexOf(a) != -1; // Efficient vowel check
+    }
         
 }
