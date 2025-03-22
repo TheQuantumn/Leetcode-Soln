@@ -23,7 +23,7 @@ class Solution {
                 }
             }
         }
-        
+        System.gc();
         return write; 
     }
 }
